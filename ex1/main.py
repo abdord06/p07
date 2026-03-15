@@ -5,7 +5,7 @@ from ex1.Deck import Deck
 
 
 def main():
-    print("=== DataDeck - Deck Builder ===")
+    print("\n=== DataDeck - Deck Builder ===\n")
     print("Building deck with different card types...")
     deck = Deck()
 
@@ -15,7 +15,7 @@ def main():
     deck.add_card(SpellCard("Lightning Bolt", 3, "Common", "damage"))
 
     print(f"Deck stats: {deck.get_deck_stats()}")
-    print("\nDrawing and playing cards:")
+    print("\nDrawing and playing cards:\n")
 
     for _ in range(3):
         card = deck.draw_card()
