@@ -29,10 +29,13 @@ class TournamentCard(Card, Combatable, Rankable):
         }
 
     def defend(self, incoming_damage: int) -> dict:
+        damage_blocked = min(self.defense_power, incoming_damage)
+        damage_taken = incoming_damage - damage_blocked
+
         return {
             'defender': self.name,
-            'damage_taken': incoming_damage,
-            'damage_blocked': 0,
+            'damage_taken': damage_taken,
+            'damage_blocked': damage_blocked,
             'still_alive': True
         }
 

@@ -14,13 +14,26 @@ class GameEngine:
         self.strategy = strategy
 
     def simulate_turn(self) -> dict:
+        if not self.factory or not self.strategy:
+            return {}
+
         self.turns_simulated += 1
+
+        hand = [
+            self.factory.create_creature("dragon"),
+            self.factory.create_creature("goblin"),
+            self.factory.create_spell("lightning")
+        ]
+
+        turn_result = self.strategy.execute_turn(hand, [])
+
+        total_damage = turn_result.get('damage_dealt', 0)
+
         return {
             'turns_simulated': self.turns_simulated,
-            'strategy_used': (self.strategy.get_strategy_name()
-                              if self.strategy else 'None'),
-            'total_damage': 8,
-            'cards_created': 3
+            'strategy_used': self.strategy.get_strategy_name(),
+            'total_damage': total_damage,
+            'cards_created': len(hand)
         }
 
     def get_engine_status(self) -> dict:
